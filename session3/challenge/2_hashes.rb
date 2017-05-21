@@ -8,3 +8,14 @@
 # staircase 4  # => {1 => [], 3 => [2]}
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
+def staircase(num)
+result = Hash.new
+1.upto(num) do |nums|
+ if nums.odd?
+   arr = Array.new(nums) { |i| i + 1 }
+   even_nums = arr.select { |i| i.even? }
+   result[nums] = even_nums
+end
+end
+result
+end

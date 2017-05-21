@@ -5,3 +5,10 @@
 # There will be no punctuation in the strings.
 #
 # first_pos "The dog and the cat and the cow" # => {"The" => 0, "dog" => 1, "and" => 2, "the" => 3, "cat" => 4, "cow" => 7}
+def first_pos(str)
+  hash = Hash.new
+  str.split.each_with_index {|word, index| hash[word] ||= index } # Explanantion: ||= evaluates 'hash[word]',
+#if that's false (boolean value of false, or nil), such as if no value was assigned there,
+#it puts 'index' as value, else leaves it alone. 
+  hash
+end
