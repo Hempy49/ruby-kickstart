@@ -7,5 +7,11 @@
 
 class String
   def every_other_char
+    result = ""
+    self.chars.delete " "
+    self.chars.each_with_index do |char,index|
+    result << char if index % 2 == 0
   end
+  result
+end
 end
