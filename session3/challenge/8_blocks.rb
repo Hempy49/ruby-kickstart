@@ -1,7 +1,25 @@
 # This problem is based off of example 2
 # Modify it so that it also tracks a person's age and a quote
 # Allow any of these to be set with a hash as well, but the block should overwrite the hash
-#
+
+
+
+class Person
+  attr_accessor :name, :age, :quote
+
+  def initialize(options=Hash.new, &initializer)
+    self.name    = options[:name]
+    self.age     = options[:age]
+    self.quote   = options[:quote]
+    @initializer = (initializer || Proc.new { |person| })
+    reinit
+  end
+
+  def reinit
+    @initializer.call(self)
+  end
+end
+
 #
 # EXAMPLE:
 #
@@ -23,17 +41,3 @@
 #
 # artist.name   # => "The Artist Formarly Known As Prince"
 # artist.age    # => 47
-
-
-class Person
-  attr_accessor :name
-
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
-  end
-
-  def reinit
-    @initializer.call self
-  end
-end
